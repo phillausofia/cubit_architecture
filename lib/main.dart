@@ -1,6 +1,8 @@
+import 'package:cubit_architecture/core/service_locator/injectable_configuration.dart';
 import 'package:flutter/material.dart';
 
 void main() {
+  configureDependencies();
   runApp(const MyApp());
 }
 
