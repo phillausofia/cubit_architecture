@@ -97,9 +97,9 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: BlocProvider(
         create: (_) => getIt<MoviesPopularCubit>(),
-        child: BlocBuilder<MoviesPopularCubit, MoviesPopularViewModel>(
+        child: BlocBuilder<MoviesPopularCubit, MoviesPopularState>(
           builder: (BuildContext context, state) {
-            if (state is MoviesPopularViewModelContent) {
+            if (state is MoviesPopularStateContent) {
               final movies = state.movies;
               return ListView.separated(
                 itemBuilder: (_, index) => MoviePopularListItem(
@@ -110,7 +110,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 itemCount: movies.length,
               );
-            } else if (state is MoviesPopularViewModelError) {
+            } else if (state is MoviesPopularStateError) {
               return const Text('Error loading the most popular movies');
             }
             return const Center(child: CircularProgressIndicator());

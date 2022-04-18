@@ -1,28 +1,28 @@
 
 import 'package:cubit_architecture/features/most_popular_movies/domain/model/movie_popular.dart';
 
-abstract class MoviesPopularViewModel {
-  MoviesPopularViewModel._();
+abstract class MoviesPopularState {
+  MoviesPopularState._();
 
-  factory MoviesPopularViewModel.loading() =>
-      MoviesPopularViewModelLoading._();
+  factory MoviesPopularState.loading() =>
+      MoviesPopularStateLoading._();
 
-  factory MoviesPopularViewModel.content(List<MoviePopular> movies) =>
-      MoviesPopularViewModelContent._(movies);
+  factory MoviesPopularState.content(List<MoviePopular> movies) =>
+      MoviesPopularStateContent._(movies);
 
-  factory MoviesPopularViewModel.error() =>
-      MoviesPopularViewModelError._();
+  factory MoviesPopularState.error() =>
+      MoviesPopularStateError._();
 }
 
-class MoviesPopularViewModelLoading extends MoviesPopularViewModel {
-  MoviesPopularViewModelLoading._() : super._();
+class MoviesPopularStateLoading extends MoviesPopularState {
+  MoviesPopularStateLoading._() : super._();
 }
 
-class MoviesPopularViewModelContent extends MoviesPopularViewModel {
+class MoviesPopularStateContent extends MoviesPopularState {
   List<MoviePopular> movies;
-  MoviesPopularViewModelContent._(this.movies) : super._();
+  MoviesPopularStateContent._(this.movies) : super._();
 }
 
-class MoviesPopularViewModelError extends MoviesPopularViewModel {
-  MoviesPopularViewModelError._() : super._();
+class MoviesPopularStateError extends MoviesPopularState {
+  MoviesPopularStateError._() : super._();
 }

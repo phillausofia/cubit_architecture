@@ -4,20 +4,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
-class MoviesPopularCubit extends Cubit<MoviesPopularViewModel> {
+class MoviesPopularCubit extends Cubit<MoviesPopularState> {
 
  final MoviesPopularRepository _repository;
 
-  MoviesPopularCubit(this._repository) : super(MoviesPopularViewModel.loading()) {
+  MoviesPopularCubit(this._repository) : super(MoviesPopularState.loading()) {
     _fetchData();
   }
 
   Future<void> _fetchData() async {
     try {
       final results = await _repository.getPopularMovies();
-      emit(MoviesPopularViewModel.content(results));
+      emit(MoviesPopularState.content(results));
     } catch (e) {
-      emit(MoviesPopularViewModel.error());
+      emit(MoviesPopularState.error());
     }
   }
 
