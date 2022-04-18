@@ -3,6 +3,9 @@ import 'package:cubit_architecture/core/network/api_helper_impl.dart';
 import 'package:cubit_architecture/features/most_popular_movies/data/mapper/movie_popular_mapper.dart';
 import 'package:cubit_architecture/features/most_popular_movies/data/repository/movies_popular_repository_impl.dart';
 import 'package:cubit_architecture/features/most_popular_movies/domain/repository/movies_popular_repository.dart';
+import 'package:cubit_architecture/features/movie_details/data/mapper/movie_details_mapper.dart';
+import 'package:cubit_architecture/features/movie_details/data/repository/movie_details_repository_impl.dart';
+import 'package:cubit_architecture/features/movie_details/domain/repository/movie_details_repository.dart';
 import 'package:cubit_architecture/utils/constants.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart';
@@ -26,6 +29,9 @@ void configureDependencies() {
   );
   getIt.registerLazySingleton<MoviesPopularRepository>(
     () => MoviesPopularRepositoryImpl(getIt(), MoviePopularMapper()),
+  );
+  getIt.registerLazySingleton<MovieDetailsRepository>(
+    () => MovieDetailsRepositoryImpl(getIt(), MovieDetailsMapper()),
   );
   $initGetIt(getIt);
 }

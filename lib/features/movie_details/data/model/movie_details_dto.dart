@@ -27,7 +27,5 @@ class MovieDetailsDTO {
       posterUrl: map['backdrop_path'],
     );
   }
-
-  factory MovieDetailsDTO.fromJson(String source) => MovieDetailsDTO.fromMap(json.decode(source));
 }
 
