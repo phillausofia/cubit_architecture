@@ -1,5 +1,17 @@
+import 'package:cubit_architecture/core/network/api_helper_impl.dart';
 import 'package:cubit_architecture/core/service_locator/injectable_configuration.dart';
+import 'package:cubit_architecture/features/most_popular_movies/data/mapper/movie_popular_mapper.dart';
+import 'package:cubit_architecture/features/most_popular_movies/data/repository/movies_popular_repository_impl.dart';
+import 'package:cubit_architecture/features/most_popular_movies/domain/repository/movies_popular_repository.dart';
+import 'package:cubit_architecture/features/most_popular_movies/presentation/movie_popular_list_item.dart';
+import 'package:cubit_architecture/features/most_popular_movies/presentation/movies_popular_cubit.dart';
+import 'package:cubit_architecture/features/most_popular_movies/presentation/movies_popular_model.dart';
+import 'package:cubit_architecture/utils/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:http/http.dart';
+
+import 'features/most_popular_movies/presentation/movies_popular_model.dart';
 
 void main() {
   configureDependencies();
@@ -71,47 +83,40 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
+
+    MoviesPopularRepositoryImpl(
+      ApiHelperImpl(
+          baseUrl: kTmdbBaseUrl, apiKey: kTmdbApiKey, client: Client()),
+      MoviePopularMapper(),
+    ).getPopularMovies().then((value) => print('movie lenght: ${value.length}'));
     return Scaffold(
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+      body: BlocProvider(
+        create: (_) => getIt<MoviesPopularCubit>(),
+        child: BlocBuilder<MoviesPopularCubit, MoviesPopularViewModel>(
+          builder: (BuildContext context, state) {
+            if (state is MoviesPopularViewModelContent) {
+              final movies = state.movies;
+              return ListView.separated(
+                itemBuilder: (_, index) => MoviePopularListItem(
+                  moviePopular: movies[index],
+                ),
+                separatorBuilder: (_, __) => const Divider(
+                  color: Colors.white,
+                ),
+                itemCount: movies.length,
+              );
+            } else if (state is MoviesPopularViewModelError) {
+              return const Text('Error loading the most popular movies');
+            }
+            return const Center(child: CircularProgressIndicator());
+          },
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
