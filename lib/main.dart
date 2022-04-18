@@ -5,13 +5,13 @@ import 'package:cubit_architecture/features/most_popular_movies/data/repository/
 import 'package:cubit_architecture/features/most_popular_movies/domain/repository/movies_popular_repository.dart';
 import 'package:cubit_architecture/features/most_popular_movies/presentation/movie_popular_list_item.dart';
 import 'package:cubit_architecture/features/most_popular_movies/presentation/movies_popular_cubit.dart';
-import 'package:cubit_architecture/features/most_popular_movies/presentation/movies_popular_model.dart';
+import 'package:cubit_architecture/features/most_popular_movies/presentation/movies_popular_state.dart';
 import 'package:cubit_architecture/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart';
 
-import 'features/most_popular_movies/presentation/movies_popular_model.dart';
+import 'features/most_popular_movies/presentation/movies_popular_state.dart';
 
 void main() {
   configureDependencies();
