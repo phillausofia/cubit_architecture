@@ -1,4 +1,5 @@
 import 'package:cubit_architecture/features/most_popular_movies/domain/model/movie_popular.dart';
+import 'package:cubit_architecture/features/movie_details/presentation/movie_details_page.dart';
 import 'package:flutter/material.dart';
 
 class MoviePopularListItem extends StatelessWidget {
@@ -13,6 +14,13 @@ class MoviePopularListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (_) => MovieDetailsPage(
+              MovieDetailsPageArguments(movieId: moviePopular.id),
+            ),
+          ),
+        );
       },
       child: Row(
         children: [

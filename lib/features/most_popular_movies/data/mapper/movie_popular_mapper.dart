@@ -10,6 +10,7 @@ class MoviePopularMapper implements Mapper<MoviePopularDTO, MoviePopular> {
           ? _buildPosterUrl(input.posterPath!)
           : MoviePopular.defaultPosterUrl(),
       title: input.title ?? MoviePopular.defaultMovieTitle(),
+      id: (input.id ?? _defaultId()).toString(),
     );
   }
 
@@ -18,4 +19,6 @@ class MoviePopularMapper implements Mapper<MoviePopularDTO, MoviePopular> {
         't/p/w500' + posterPath,
         {'apiKey': '51c33d10ebc31ef012b00c9b8d05b2de'},
       ).toString();
+
+  int _defaultId() => DateTime.now().millisecondsSinceEpoch;
 }

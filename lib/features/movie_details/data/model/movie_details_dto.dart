@@ -6,7 +6,7 @@ class MovieDetailsDTO {
   final String? overview;
   final String? tagline;
   final double? rating;
-  final String? posterUrl;
+  final String? posterPath;
 
   MovieDetailsDTO({
     this.id,
@@ -14,7 +14,7 @@ class MovieDetailsDTO {
     this.overview,
     this.tagline,
     this.rating,
-    this.posterUrl,
+    this.posterPath,
   });
 
   factory MovieDetailsDTO.fromMap(Map<String, dynamic> map) {
@@ -24,7 +24,7 @@ class MovieDetailsDTO {
       overview: map['overview'],
       tagline: map['tagline'],
       rating: map['vote_average'].toDouble(),
-      posterUrl: map['backdrop_path'],
+      posterPath: map['backdrop_path'],
     );
   }
 }
