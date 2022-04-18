@@ -11,7 +11,7 @@ abstract class MoviesPopularViewModel {
       MoviesPopularViewModelContent._(movies);
 
   factory MoviesPopularViewModel.error() =>
-      HomeViewModelError._();
+      MoviesPopularViewModelError._();
 }
 
 class MoviesPopularViewModelLoading extends MoviesPopularViewModel {
@@ -23,6 +23,6 @@ class MoviesPopularViewModelContent extends MoviesPopularViewModel {
   MoviesPopularViewModelContent._(this.movies) : super._();
 }
 
-class HomeViewModelError extends MoviesPopularViewModel {
-  HomeViewModelError._() : super._();
+class MoviesPopularViewModelError extends MoviesPopularViewModel {
+  MoviesPopularViewModelError._() : super._();
 }

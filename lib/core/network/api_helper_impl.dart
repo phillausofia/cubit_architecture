@@ -1,10 +1,7 @@
 import 'dart:convert';
-
 import 'package:cubit_architecture/core/network/api_helper.dart';
 import 'package:http/http.dart' as http;
-import 'package:injectable/injectable.dart';
 
-@lazySingleton
 class ApiHelperImpl implements ApiHelper {
 
   final String baseUrl;
