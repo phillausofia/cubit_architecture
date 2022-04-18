@@ -1,15 +1,9 @@
-import 'package:cubit_architecture/core/network/api_helper_impl.dart';
 import 'package:cubit_architecture/core/service_locator/injectable_configuration.dart';
-import 'package:cubit_architecture/features/most_popular_movies/data/mapper/movie_popular_mapper.dart';
-import 'package:cubit_architecture/features/most_popular_movies/data/repository/movies_popular_repository_impl.dart';
-import 'package:cubit_architecture/features/most_popular_movies/domain/repository/movies_popular_repository.dart';
 import 'package:cubit_architecture/features/most_popular_movies/presentation/movie_popular_list_item.dart';
 import 'package:cubit_architecture/features/most_popular_movies/presentation/movies_popular_cubit.dart';
 import 'package:cubit_architecture/features/most_popular_movies/presentation/movies_popular_state.dart';
-import 'package:cubit_architecture/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:http/http.dart';
 
 import 'features/most_popular_movies/presentation/movies_popular_state.dart';
 
@@ -62,37 +56,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-
-    MoviesPopularRepositoryImpl(
-      ApiHelperImpl(
-          baseUrl: kTmdbBaseUrl, apiKey: kTmdbApiKey, client: Client()),
-      MoviePopularMapper(),
-    ).getPopularMovies().then((value) => print('movie lenght: ${value.length}'));
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
       body: BlocProvider(

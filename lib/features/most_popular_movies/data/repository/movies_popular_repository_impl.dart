@@ -4,7 +4,6 @@ import 'package:cubit_architecture/core/network/api_path.dart';
 import 'package:cubit_architecture/features/most_popular_movies/data/model/movies_popular_response.dart';
 import 'package:cubit_architecture/features/most_popular_movies/domain/model/movie_popular.dart';
 import 'package:cubit_architecture/features/most_popular_movies/domain/repository/movies_popular_repository.dart';
-import 'package:injectable/injectable.dart';
 
 class MoviesPopularRepositoryImpl implements MoviesPopularRepository {
   final ApiHelper _apiHelper;

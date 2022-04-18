@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class MovieDetailsDTO {
   final int? id;
   final String? title;
