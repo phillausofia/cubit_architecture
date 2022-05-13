@@ -14,12 +14,10 @@ class MoviePopularListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (_) => MovieDetailsPage(
-              MovieDetailsPageArguments(movieId: moviePopular.id),
-            ),
-          ),
+        Navigator.pushNamed(
+          context,
+          MovieDetailsPage.route,
+          arguments: MovieDetailsPageArguments(movieId: moviePopular.id),
         );
       },
       child: Row(

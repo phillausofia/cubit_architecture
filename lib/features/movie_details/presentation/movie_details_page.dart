@@ -16,18 +16,16 @@ class MovieDetailsPageArguments {
 class MovieDetailsPage extends StatefulWidget {
   static const route = "movieDetails";
 
-  final MovieDetailsPageArguments _movieDetailsPageArguments;
 
-  const MovieDetailsPage(
-      this._movieDetailsPageArguments,
-  {Key? key}): super(key: key);
+  const MovieDetailsPage({Key? key}): super(key: key);
 
   @override
   _MovieDetailsPageState createState() => _MovieDetailsPageState();
 }
 
 class _MovieDetailsPageState extends State<MovieDetailsPage> {
-  MovieDetailsPageArguments get _args => widget._movieDetailsPageArguments;
+  MovieDetailsPageArguments get _args => ModalRoute.of(context)!.settings
+    .arguments as MovieDetailsPageArguments;
 
   @override
   Widget build(BuildContext context) {
