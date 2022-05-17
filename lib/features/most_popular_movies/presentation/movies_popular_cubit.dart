@@ -3,7 +3,7 @@ import 'package:cubit_architecture/features/most_popular_movies/presentation/mov
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-@injectable
+@lazySingleton
 class MoviesPopularCubit extends Cubit<MoviesPopularState> {
 
  final MoviesPopularRepository _repository;

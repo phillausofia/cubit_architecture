@@ -3,7 +3,7 @@ import 'package:cubit_architecture/features/movie_details/presentation/movie_det
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-@injectable
+@lazySingleton
 class MovieDetailsCubit extends Cubit<MovieDetailsState> {
 
   final MovieDetailsRepository _repository;

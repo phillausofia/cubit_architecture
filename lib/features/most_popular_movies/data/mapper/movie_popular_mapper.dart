@@ -3,7 +3,10 @@ import 'package:cubit_architecture/features/most_popular_movies/data/model/movie
 import 'package:cubit_architecture/features/most_popular_movies/domain/model/movie_popular.dart';
 import 'package:cubit_architecture/utils/constants.dart';
 import 'package:cubit_architecture/utils/functions.dart';
+import 'package:injectable/injectable.dart';
 
+@Named("moviePopularMapper")
+@Injectable(as: Mapper)
 class MoviePopularMapper implements Mapper<MoviePopularDTO, MoviePopular> {
   @override
   MoviePopular map(MoviePopularDTO input) {
